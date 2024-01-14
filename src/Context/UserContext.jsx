@@ -11,6 +11,7 @@ export default function UserContext({ children }) {
     const [tempUser, setTempUser] = useState("");
 
     const Register = async (user) => {
+        console.log('user :>> ', user);
         try {
             const url = `${base_url}/api/user/Register`
             await fetch(url, {
