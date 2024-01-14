@@ -67,8 +67,6 @@ export default function Login() {
                 autoLoad={true}
                 fields="name,email,picture"
                 callback={responseFacebook}
-                cssClass="my-facebook-button-class"
-                icon="fa-facebook"
               />
             </div>
           </div>
