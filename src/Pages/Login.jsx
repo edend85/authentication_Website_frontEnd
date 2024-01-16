@@ -1,7 +1,6 @@
 import { useState, useContext, useEffect } from 'react';
 import { userContext } from '../Context/UserContext';
 import { useNavigate } from "react-router-dom";
-/*import FacebookLogin from 'react-facebook-login';*/
 
 export default function Login() {
   //navigate 
@@ -17,24 +16,6 @@ export default function Login() {
     console.log('email,password :>> ', email, password);
     Login(email, password);
   }
-  /*
-  <FacebookLogin
-                buttonStyle={{ backgroundColor: "#4267B2" }}
-                appId='736280548429217'
-                autoLoad={true}
-                fields='name,email,picture'
-                onClick={componentClicked}
-                callback={responseFacebook}>
-              </FacebookLogin>
-               const responseFacebook = (response) => {
-    console.log('response :>> ', response);
-  }
-  const componentClicked = () => {
-    console.log('clicked :>> ');
-  }
-  
-  * */
-
   //when current user is defined by register form or social network
   useEffect(() => {
     if (currentUser) {
@@ -70,6 +51,12 @@ export default function Login() {
                   <path d="M5.08301 23.5656L19.5671 34.1879C23.4863 24.4848 32.9778 17.634 44.085 17.634C50.8278 17.634 56.9622 20.1777 61.633 24.3327L74.1025 11.8633C66.2289 4.52532 55.697 0 44.085 0C27.152 0 12.4672 9.55983 5.08301 23.5656Z" fill="#FF3D00" />
                   <path d="M44.085 88.17C55.4721 88.17 65.8189 83.8122 73.6418 76.7255L59.9975 65.1797C55.5713 68.5323 50.0695 70.536 44.085 70.536C32.6185 70.536 22.8823 63.2245 19.2144 53.021L4.83832 64.0974C12.1344 78.3743 26.9514 88.17 44.085 88.17Z" fill="#4CAF50" />
                   <path d="M87.3126 35.451H83.7615V35.268H44.085V52.902H68.9997C67.2539 57.8329 64.082 62.0849 59.9909 65.1819C59.9931 65.1797 59.9953 65.1797 59.9975 65.1775L73.6418 76.7233C72.6763 77.6006 88.17 66.1275 88.17 44.085C88.17 41.1291 87.8658 38.2437 87.3126 35.451Z" fill="#1976D2" />
+                </svg>
+              </button>
+              <button>
+                <svg xmlns="http://www.w3.org/2000/svg" width="55" height="55" viewBox="0 0 266.893 266.895" id="facebook">
+                  <path fill="#485a96" d="M252.164 266.895c8.134 0 14.729-6.596 14.729-14.73V14.73c0-8.137-6.596-14.73-14.729-14.73H14.73C6.593 0 0 6.594 0 14.73v237.434c0 8.135 6.593 14.73 14.73 14.73h237.434z"></path>
+                  <path fill="#fff" d="M184.152 266.895V163.539h34.692l5.194-40.28h-39.887V97.542c0-11.662 3.238-19.609 19.962-19.609l21.329-.01V41.897c-3.689-.49-16.351-1.587-31.08-1.587-30.753 0-51.807 18.771-51.807 53.244v29.705h-34.781v40.28h34.781v103.355h41.597z"></path>
                 </svg>
               </button>
               <button onClick={() => { navigate("/Register") }}>
