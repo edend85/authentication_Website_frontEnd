@@ -19,7 +19,10 @@ export default function Login() {
   }
   const handleFacebookLogin = () => {
     signInWithPopup(auth, provider).then((result) => {
-      console.log('result.user :>> ', result.user);
+      const credential = FacebookAuthProvider.credentialFromResult(result);
+      const token = credential.accessToken;
+      const user = result.user;
+      console.log('user :>> ', user);
     }).catch((err) => { console.log(err) })
   }
   //when current user is defined by register form or social network
