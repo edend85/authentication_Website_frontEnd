@@ -19,7 +19,8 @@ export default function Login() {
   }
   const handleFacebookLogin = () => {
     signInWithPopup(auth, provider).then((result) => {
-      console.log('result :>> ', result);
+      const credential = FacebookAuthProvider.credentialFromResult(result);
+      const accessToken = credential.accessToken;
 
     }).catch((error) => {
       const errorCode = error.code;
