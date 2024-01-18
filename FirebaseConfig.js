@@ -5,7 +5,7 @@ import { getAuth,FacebookAuthProvider } from "firebase/auth";
 
 const firebaseConfig = {
   apiKey: "AIzaSyAoMtrDWFlW1cc9cpTCDg0_wBhDX2Sqw4E",
-  authDomain: "https://authentication-zi9e.onrender.com",
+  authDomain: "authenticationwebsite-6901f.firebaseapp.com",
   projectId: "authenticationwebsite-6901f",
   storageBucket: "authenticationwebsite-6901f.appspot.com",
   messagingSenderId: "815653281370",
