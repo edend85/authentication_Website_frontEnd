@@ -1,7 +1,7 @@
 import { useState, useContext, useEffect } from 'react';
 import { userContext } from '../Context/UserContext';
 import { useNavigate } from "react-router-dom";
-import { signInWithPopup, FacebookAuthProvider } from "firebase/auth";
+import { signInWithPopup } from "firebase/auth";
 import { auth, provider } from '../../FirebaseConfig';
 export default function Login() {
   //navigate 
@@ -19,16 +19,11 @@ export default function Login() {
   }
   const handleFacebookLogin = () => {
     signInWithPopup(auth, provider).then((result) => {
-      const credential = FacebookAuthProvider.credentialFromResult(result);
-      const accessToken = credential.accessToken;
+      setTempUser(result.user);
+      console.log('tempUser :>> ', tempUser);
 
     }).catch((error) => {
-      const errorCode = error.code;
-      const errorMessage = error.message;
-      // The email of the user's account used.
-      const email = error.customData.email;
-      // AuthCredential type that was used.
-      const credential = FacebookAuthProvider.credentialFromError(error);
+      console.log('error :>> ', error);
     })
   }
   //when current user is defined by register form or social network
