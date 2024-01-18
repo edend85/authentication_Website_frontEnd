@@ -24,7 +24,7 @@ export default function Login() {
       const credential = FacebookAuthProvider.credentialFromResult(result);
       const accessToken = credential.accessToken;
       setTempUser(result.user);
-      const u = getAdditionalUserInfo(result);
+      const u = getAdditionalUserInfo(accessToken);
       console.log('tempUser :>> ', u);
       console.log('accessToken :>> ', accessToken);
 
