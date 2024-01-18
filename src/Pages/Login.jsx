@@ -19,11 +19,16 @@ export default function Login() {
   }
   const handleFacebookLogin = () => {
     signInWithPopup(auth, provider).then((result) => {
-      const credential = FacebookAuthProvider.credentialFromResult(result);
-      const token = credential.accessToken;
-      const user = result.user;
-      console.log('user :>> ', token);
-    }).catch((err) => { console.log(err) })
+      console.log('result :>> ', result);
+
+    }).catch((error) => {
+      const errorCode = error.code;
+      const errorMessage = error.message;
+      // The email of the user's account used.
+      const email = error.customData.email;
+      // AuthCredential type that was used.
+      const credential = FacebookAuthProvider.credentialFromError(error);
+    })
   }
   //when current user is defined by register form or social network
   useEffect(() => {
