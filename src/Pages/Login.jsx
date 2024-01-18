@@ -22,7 +22,7 @@ export default function Login() {
       const credential = FacebookAuthProvider.credentialFromResult(result);
       const token = credential.accessToken;
       const user = result.user;
-      console.log('user :>> ', user);
+      console.log('user :>> ', token);
     }).catch((err) => { console.log(err) })
   }
   //when current user is defined by register form or social network
