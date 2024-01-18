@@ -1,8 +1,10 @@
 import { useState, useContext, useEffect } from 'react';
 import { userContext } from '../Context/UserContext';
 import { useNavigate } from "react-router-dom";
-import { signInWithPopup } from "firebase/auth";
+import { FacebookAuthProvider, signInWithPopup } from "firebase/auth";
 import { auth, provider } from '../../FirebaseConfig';
+
+
 export default function Login() {
   //navigate 
   const navigate = useNavigate();
@@ -19,7 +21,7 @@ export default function Login() {
   }
   const handleFacebookLogin = () => {
     signInWithPopup(auth, provider).then((result) => {
-      const credential = provider.credentialFromResult(result);
+      const credential = FacebookAuthProvider.credentialFromResult(result);
       const accessToken = credential.accessToken;
       setTempUser(result.user);
       console.log('tempUser :>> ', tempUser);
