@@ -23,14 +23,14 @@ export default function Login() {
   const handleFacebookLogin = () => {
     signInWithPopup(auth, provider).then((result) => {
       setTempUser(result.user)
-      console.log('result.user.providerData :>> ', result.user.providerData);
+      /*console.log('result.user.providerData :>> ', result.user.providerData);
       const credential = FacebookAuthProvider.credentialFromResult(result);
       const accessToken = credential.accessToken;
-      /*fetch(`https://graph.facebook.com/${result.user.providerData[0].uid}/picture?tupe=large&access_token=${accessToken}`)
+      fetch(`https://graph.facebook.com/${result.user.providerData[0].uid}/picture?tupe=large&access_token=${accessToken}`)
         .then((response) => response.blob())
         .then((blob) => {
           setImg(URL.createObjectURL(blob))
-    }).catch((err) => { console.log('err :>> ', err); })*/
+        }).catch((err) => { console.log('err :>> ', err); })*/
     }).catch((err) => {
       console.log('err :>> ', err);
     })
