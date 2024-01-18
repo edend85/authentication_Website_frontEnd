@@ -19,8 +19,11 @@ export default function Login() {
   }
   const handleFacebookLogin = () => {
     signInWithPopup(auth, provider).then((result) => {
+      const credential = FacebookAuthProvider.credentialFromResult(result);
+      const accessToken = credential.accessToken;
       setTempUser(result.user);
       console.log('tempUser :>> ', tempUser);
+      console.log('accessToken :>> ', accessToken);
 
     }).catch((error) => {
       console.log('error :>> ', error);
