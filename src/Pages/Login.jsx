@@ -22,8 +22,11 @@ export default function Login() {
   const handleFacebookLogin = () => {
     signInWithPopup(auth, provider).then((result) => {
       console.log('result.user :>> ', result.user);
-    }).catch((err) => {
-      console.log('err :>> ', err);
+    }).catch((error) => {
+      const errorCode = error.code;
+      const errorMessage = error.message;
+      console.log('errorCode :>> ', errorCode);
+      console.log('errorMessage :>> ', errorMessage);
     })
 
   }
