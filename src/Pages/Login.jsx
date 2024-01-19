@@ -27,6 +27,8 @@ export default function Login() {
       const errorMessage = error.message;
       console.log('errorCode :>> ', errorCode);
       console.log('errorMessage :>> ', errorMessage);
+      const credential = FacebookAuthProvider.credentialFromError(error);
+      console.log('credential :>> ', credential);
     })
 
   }
