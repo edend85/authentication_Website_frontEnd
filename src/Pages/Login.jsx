@@ -2,7 +2,7 @@ import { useState, useContext, useEffect } from 'react';
 import { userContext } from '../Context/UserContext';
 import { useNavigate } from "react-router-dom";
 import { signInWithPopup, FacebookAuthProvider } from 'firebase/auth';
-import { auth, provider } from "/FirebaseConfig.js"
+import { auth, provider } from '../../FirebaseConfig';
 
 export default function Login() {
   //navigate 
