@@ -1,8 +1,8 @@
 import { useState, useContext, useEffect } from 'react';
 import { userContext } from '../Context/UserContext';
 import { useNavigate } from "react-router-dom";
-import { handleFacebookLogin } from '../../FirebaseConfig';
-
+import { FacebookAuthProvider, signInWithPopup } from "firebase/auth";
+import { auth } from '../../FirebaseConfig';
 
 export default function Login() {
   //navigate 
@@ -22,6 +22,18 @@ export default function Login() {
 
   const handleLogout = () => {
     setTempUser(null);
+  }
+
+  const handleFacebookLogin = () => {
+    const provider = new FacebookAuthProvider();
+    signInWithPopup(auth, provider)
+      .then((result) => {
+        console.log('result.user :>> ', result);
+      }).catch((error) => {
+        const errorMessage = error.message;
+        console.log('errorMessage :>> ', errorMessage);
+      })
+
   }
   //when current user is defined by register form or social network
   useEffect(() => {

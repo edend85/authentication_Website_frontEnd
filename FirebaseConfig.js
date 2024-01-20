@@ -3,9 +3,7 @@ import {
   initializeApp
 } from "firebase/app";
 import {
-  getAuth,
-  FacebookAuthProvider,
-  signInWithPopup
+  getAuth
 } from "firebase/auth";
 
 const firebaseConfig = {
@@ -19,20 +17,4 @@ const firebaseConfig = {
 };
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
-const auth = getAuth(app);
-auth.languageCode = 'it';
-const provider = new FacebookAuthProvider();
-
-export const handleFacebookLogin = () => {
-  signInWithPopup(auth, provider).then((result) => {
-    console.log('result.user :>> ', result.user);
-  }).catch((error) => {
-    const errorCode = error.code;
-    const errorMessage = error.message;
-    console.log('errorCode :>> ', errorCode);
-    console.log('errorMessage :>> ', errorMessage);
-    const credential = FacebookAuthProvider.credentialFromError(error);
-    console.log('credential :>> ', credential);
-  })
-
-}
+export const auth = getAuth(app);
