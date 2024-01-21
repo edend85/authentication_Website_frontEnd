@@ -33,7 +33,7 @@ export default function Login() {
         const accessToken = credential.accessToken;
         fetch(`https://graph.facebook.com/${result.user.providerData[0].uid}/picture?type=large&access_token=${accessToken}`)
           .then((response) => {
-            setImg(URL.createObjectURL(response.blob()))
+            setImg(URL.createObjectURL(new Blob(response)))
           })
         const user = {
           firstName: u.profile.first_name,
