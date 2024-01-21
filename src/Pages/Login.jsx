@@ -39,6 +39,7 @@ export default function Login() {
           socialMediaAccount: "facebook"
         }
         console.log('user :>> ', user);
+        setTempUser(user);
       }).catch((error) => {
         const errorMessage = error.message;
         console.log('errorMessage :>> ', errorMessage);
@@ -99,10 +100,10 @@ export default function Login() {
                 tempUser ? (
                   <>
                     <button onClick={handleLogout}>logout</button>
-                    <h3>welcome {tempUser.displayName}</h3>
+                    <h3>welcome {tempUser.firstName} {tempUser.lastName}</h3>
                     <p>{tempUser.email}</p>
                     <div>
-                      <img src={tempUser.photoURL} alt="dp" referrerPolicy="no-referrer" />
+                      <img src={tempUser.picture} alt="dp" referrerPolicy="no-referrer" />
                     </div>
                   </>
                 )
