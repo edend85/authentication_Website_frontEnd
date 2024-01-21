@@ -27,14 +27,14 @@ export default function Login() {
   const handleFacebookLogin = () => {
     const provider = new FacebookAuthProvider();
     signInWithPopup(auth, provider)
-      .then((result) => {
-        const u = getAdditionalUserInfo(result);
-        const user = {
+      .then(async (result) => {
+        const u = await getAdditionalUserInfo(result);
+        const user = await {
           firstName: u.profile.first_name,
           lastName: u.profile.last_name,
           email: u.profile.email,
           password: u.profile.password || "",
-          picture: URL.createObjectURL(new Blob(u.profile.picture.data.url)) || "",
+          picture: u.profile.picture.data.url || "",
           socialMediaAccount: "facebook"
         }
         console.log('user :>> ', user);
