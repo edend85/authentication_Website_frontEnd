@@ -28,10 +28,11 @@ export default function Login() {
     const provider = new FacebookAuthProvider();
     signInWithPopup(auth, provider)
       .then((result) => {
-        const u = getAdditionalUserInfo(result);
+        console.log('result :>> ', result);
+        /*const u = getAdditionalUserInfo(result);
         const credential = FacebookAuthProvider.credentialFromResult(result);
-        const accessToken = credential.accessToken;
-        fetch(`https://graph.facebook.com/${result.user.providerData[0].uid}/picture?type=large&access_token=${accessToken}`)
+        const accessToken = credential.accessToken;*/
+        /*fetch(`https://graph.facebook.com/${result.user.providerData[0].uid}/picture?type=large&access_token=${accessToken}`)
           .then((response) => {
             return response.blob()
           })
@@ -48,7 +49,7 @@ export default function Login() {
             }
             console.log('user :>> ', user);
             setTempUser(user);
-          })
+          })*/
 
       }).catch((error) => {
         const errorMessage = error.message;
