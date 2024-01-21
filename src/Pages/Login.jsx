@@ -29,13 +29,19 @@ export default function Login() {
     signInWithPopup(auth, provider)
       .then((result) => {
         const u = getAdditionalUserInfo(result);
-        /*console.log('result.user :>> ', u);*/
+        const credential = FacebookAuthProvider.credentialFromResult(result);
+        const token = credential.accessToken;
+        fetch(`https://graph.facebook.com/${result.user.providerData[0].uid}/picture?type=large&access_token=${token}`)
+          .then((response) => response.blob())
+          .then((blob) => {
+            setImg(URL.createObjectURL(blob))
+          })
         const user = {
           firstName: u.profile.first_name,
           lastName: u.profile.last_name,
           email: u.profile.email,
           password: u.profile.password || "",
-          picture: u.profile.picture.data.url || "",
+          picture: Img || "",
           socialMediaAccount: "facebook"
         }
         console.log('user :>> ', user);
