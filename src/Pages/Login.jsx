@@ -29,13 +29,13 @@ export default function Login() {
     signInWithPopup(auth, provider)
       .then((result) => {
         const u = getAdditionalUserInfo(result);
-        console.log('result.user :>> ', u);
+        /*console.log('result.user :>> ', u);*/
         const user = {
-          firstName: u.profile.efirstName,
-          lastName: u.profile.lastName,
+          firstName: u.profile.first_name,
+          lastName: u.profile.last_name,
           email: u.profile.email,
           password: u.profile.password || "",
-          picture: u.profile.picture || "",
+          picture: u.profile.picture.data.url || "",
           socialMediaAccount: "facebook"
         }
         console.log('user :>> ', user);
