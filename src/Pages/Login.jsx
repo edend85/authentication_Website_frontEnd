@@ -33,6 +33,8 @@ export default function Login() {
         console.log('result :>> ', result);
         console.log('credential :>> ', credential);
         console.log('accessToken :>> ', accessToken);
+        const u = getAdditionalUserInfo(result);
+        console.log('u :>> ', u);
 
       }).catch((error) => {
         const errorMessage = error.message;
