@@ -28,8 +28,11 @@ export default function Login() {
     const provider = new FacebookAuthProvider();
     signInWithPopup(auth, provider)
       .then((result) => {
+        const credential = FacebookAuthProvider.credentialFromResult(result);
+        const accessToken = credential.accessToken
         console.log('result :>> ', result);
-
+        console.log('credential :>> ', credential);
+        console.log('accessToken :>> ', accessToken);
 
       }).catch((error) => {
         const errorMessage = error.message;
