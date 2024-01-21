@@ -28,6 +28,7 @@ export default function Login() {
     const provider = new FacebookAuthProvider();
     signInWithPopup(auth, provider)
       .then((result) => {
+        console.log('result :>> ', result);
         const u = getAdditionalUserInfo(result.user);
         const credential = FacebookAuthProvider.credentialFromResult(result);
         const accessToken = credential.accessToken;
