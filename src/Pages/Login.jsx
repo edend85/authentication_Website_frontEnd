@@ -28,7 +28,7 @@ export default function Login() {
     const provider = new FacebookAuthProvider();
     signInWithPopup(auth, provider)
       .then((result) => {
-        console.log('result.user :>> ', result.user);
+        console.log('result.user :>> ', result);
       }).catch((error) => {
         const errorMessage = error.message;
         console.log('errorMessage :>> ', errorMessage);
