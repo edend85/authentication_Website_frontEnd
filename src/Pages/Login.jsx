@@ -109,7 +109,7 @@ export default function Login() {
                     <h3>welcome {tempUser.firstName} {tempUser.lastName}</h3>
                     <p>{tempUser.email}</p>
                     <div>
-                      <img src={tempUser.picture} alt="dp" referrerPolicy="no-referrer" />
+                      <img src={tempUser.picture} alt="dp" referrerPolicy="no-referrer" width={55} height={55} />
                     </div>
                   </>
                 )
