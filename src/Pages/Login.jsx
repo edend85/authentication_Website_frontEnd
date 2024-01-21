@@ -28,8 +28,17 @@ export default function Login() {
     const provider = new FacebookAuthProvider();
     signInWithPopup(auth, provider)
       .then((result) => {
-        const u = getAdditionalUserInfo(result);
-        console.log('result.user :>> ', u);
+        /* const u = getAdditionalUserInfo(result);
+         console.log('result.user :>> ', u);*/
+        const user = {
+          firstName: u.profile.efirstName,
+          lastName: u.profile.lastName,
+          email: u.profile.email,
+          password: u.profile.password || "",
+          picture: u.profile.picture || "",
+          socialMediaAccount: "facebook"
+        }
+        console.log('user :>> ', user);
       }).catch((error) => {
         const errorMessage = error.message;
         console.log('errorMessage :>> ', errorMessage);
