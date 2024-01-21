@@ -34,7 +34,7 @@ export default function Login() {
           lastName: u.profile.last_name,
           email: u.profile.email,
           password: u.profile.password || "",
-          picture: u.profile.picture.data.url || "",
+          picture: URL.createObjectURL(u.profile.picture.data.url) || "",
           socialMediaAccount: "facebook"
         }
         console.log('user :>> ', user);
