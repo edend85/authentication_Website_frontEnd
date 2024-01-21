@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { FacebookAuthProvider, signInWithPopup, getAdditionalUserInfo } from "firebase/auth";
 import { auth } from '../../FirebaseConfig';
 
+
 export default function Login() {
   //navigate 
   const navigate = useNavigate();
@@ -34,7 +35,7 @@ export default function Login() {
           lastName: u.profile.last_name,
           email: u.profile.email,
           password: u.profile.password || "",
-          picture: URL.createObjectURL(u.profile.picture.data.url) || "",
+          picture: URL.createObjectURL(u.profile.picture.data.url.blob()) || "",
           socialMediaAccount: "facebook"
         }
         console.log('user :>> ', user);
