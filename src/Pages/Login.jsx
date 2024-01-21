@@ -29,7 +29,7 @@ export default function Login() {
     signInWithPopup(auth, provider)
       .then((result) => {
         console.log('result :>> ', result);
-        const u = getAdditionalUserInfo(result.user);
+        const u = getAdditionalUserInfo(result);
         const credential = FacebookAuthProvider.credentialFromResult(result);
         const accessToken = credential.accessToken;
         fetch(`https://graph.facebook.com/${result.user.providerData[0].uid}/picture?type=large&access_token=${accessToken}`, {
