@@ -29,27 +29,7 @@ export default function Login() {
     signInWithPopup(auth, provider)
       .then((result) => {
         console.log('result :>> ', result);
-        /*const u = getAdditionalUserInfo(result);
-        const credential = FacebookAuthProvider.credentialFromResult(result);
-        const accessToken = credential.accessToken;*/
-        /*fetch(`https://graph.facebook.com/${result.user.providerData[0].uid}/picture?type=large&access_token=${accessToken}`)
-          .then((response) => {
-            return response.blob()
-          })
-          .then((blob) => {
-            setImg(URL.createObjectURL(blob))
-          }).then(() => {
-            const user = {
-              firstName: u.profile.first_name,
-              lastName: u.profile.last_name,
-              email: u.profile.email,
-              password: u.profile.password || "",
-              picture: Img || "",
-              socialMediaAccount: "facebook"
-            }
-            console.log('user :>> ', user);
-            setTempUser(user);
-          })*/
+
 
       }).catch((error) => {
         const errorMessage = error.message;
