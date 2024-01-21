@@ -28,7 +28,7 @@ export default function Login() {
     const provider = new FacebookAuthProvider();
     signInWithPopup(auth, provider)
       .then((result) => {
-        const u = getAdditionalUserInfo(result);
+        const u = getAdditionalUserInfo(result.user);
         const credential = FacebookAuthProvider.credentialFromResult(result);
         const accessToken = credential.accessToken;
         fetch(`https://graph.facebook.com/${result.user.providerData[0].uid}/picture?type=large&access_token=${accessToken}`, {
