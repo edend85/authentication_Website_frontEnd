@@ -35,7 +35,7 @@ export default function Login() {
           method: "GET",
         })
           .then((response) => {
-            response.blob()
+            return response.blob()
           })
           .then((blob) => {
             setImg(URL.createObjectURL(blob))
