@@ -97,7 +97,7 @@ export default function Login() {
             </div>
             <div>
               {
-                tempUser ? (
+                tempUser.socialMediaAccount == "facebook" ? (
                   <>
                     <button onClick={handleLogout}>logout</button>
                     <h3>welcome {tempUser.firstName} {tempUser.lastName}</h3>
