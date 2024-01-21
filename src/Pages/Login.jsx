@@ -4,7 +4,6 @@ import { useNavigate } from "react-router-dom";
 import { FacebookAuthProvider, signInWithPopup, getAdditionalUserInfo } from "firebase/auth";
 import { auth } from '../../FirebaseConfig';
 
-
 export default function Login() {
   //navigate 
   const navigate = useNavigate();
@@ -28,18 +27,29 @@ export default function Login() {
   const handleFacebookLogin = () => {
     const provider = new FacebookAuthProvider();
     signInWithPopup(auth, provider)
-      .then(async (result) => {
-        const u = await getAdditionalUserInfo(result);
-        const user = await {
-          firstName: u.profile.first_name,
-          lastName: u.profile.last_name,
-          email: u.profile.email,
-          password: u.profile.password || "",
-          picture: URL.createObjectURL(u.profile.picture.data.url.blob()) || "",
-          socialMediaAccount: "facebook"
-        }
-        console.log('user :>> ', user);
-        setTempUser(user);
+      .then((result) => {
+        const u = getAdditionalUserInfo(result);
+        const credential = FacebookAuthProvider.credentialFromResult(result);
+        const accessToken = credential.accessToken;
+        fetch(`https://graph.facebook.com/${result.user.providerData[0].uid}/picture?type=large&access_token=${accessToken}`)
+          .then((response) => {
+            response.blob()
+          })
+          .then((blob) => {
+            setImg(URL.createObjectURL(blob))
+          }).then(() => {
+            const user = {
+              firstName: u.profile.first_name,
+              lastName: u.profile.last_name,
+              email: u.profile.email,
+              password: u.profile.password || "",
+              picture: Img || "",
+              socialMediaAccount: "facebook"
+            }
+            console.log('user :>> ', user);
+            setTempUser(user);
+          })
+
       }).catch((error) => {
         const errorMessage = error.message;
         console.log('errorMessage :>> ', errorMessage);
