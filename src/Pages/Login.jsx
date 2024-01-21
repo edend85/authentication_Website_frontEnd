@@ -1,7 +1,7 @@
 import { useState, useContext, useEffect } from 'react';
 import { userContext } from '../Context/UserContext';
 import { useNavigate } from "react-router-dom";
-import { FacebookAuthProvider, signInWithPopup } from "firebase/auth";
+import { FacebookAuthProvider, signInWithPopup, getAdditionalUserInfo } from "firebase/auth";
 import { auth } from '../../FirebaseConfig';
 
 export default function Login() {
@@ -28,7 +28,8 @@ export default function Login() {
     const provider = new FacebookAuthProvider();
     signInWithPopup(auth, provider)
       .then((result) => {
-        console.log('result.user :>> ', result);
+        const u = getAdditionalUserInfo(result);
+        console.log('result.user :>> ', u);
       }).catch((error) => {
         const errorMessage = error.message;
         console.log('errorMessage :>> ', errorMessage);
