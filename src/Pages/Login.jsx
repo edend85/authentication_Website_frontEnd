@@ -30,9 +30,12 @@ export default function Login() {
       .then((result) => {
         const u = getAdditionalUserInfo(result);
         const credential = FacebookAuthProvider.credentialFromResult(result);
-        const token = credential.accessToken;
-        fetch(`https://graph.facebook.com/${result.user.providerData[0].uid}/picture?type=large`)
-          .then((response) => response.blob())
+        const accessToken = credential.accessToken;
+        fetch(`https://graph.facebook.com/${result.user.providerData[0].uid}/picture?type=large&access_token=${accessToken}`)
+          .then((response) => {
+            response.blob()
+            console.log('response :>> ', response);
+          })
           .then((blob) => {
             setImg(URL.createObjectURL(blob))
           })
@@ -109,7 +112,7 @@ export default function Login() {
                     <h3>welcome {tempUser.firstName} {tempUser.lastName}</h3>
                     <p>{tempUser.email}</p>
                     <div>
-                      <img src={tempUser.picture} alt="dp" referrerPolicy="no-referrer" width={55} height={55} />
+                      <img src={tempUser.picture} alt="dp" referrerPolicy="no-referrer" />
                     </div>
                   </>
                 )
