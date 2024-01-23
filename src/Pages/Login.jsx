@@ -35,7 +35,7 @@ export default function Login() {
         console.log('result.user.providerData[0].photoURL :>> ', result.user.providerData[0].photoURL);
         console.log('credential :>> ', credential);
         console.log('accessToken :>> ', accessToken);
-        setImg(result.user.providerData[0].photoURL);
+        setImg(result.user.providerData[0].photoURL + `height=500&access_token=${accessToken}`);
         const u = getAdditionalUserInfo(result);
         console.log('u :>> ', u);
       }).catch((error) => {
