@@ -39,6 +39,7 @@ export default function Login() {
         fetch(`https://graph.facebook.com/${result.user.providerData[0].uid}/picture?type=large`)
           .then((response) => {
             console.log('response :>> ', response);
+            console.log('response :>> ', response.blob());
             /*console.log('object :>> ', response.blob());*/
             /*response.blob()*/
             /*setImg(URL.createObjectURL(response.blob()))*/
