@@ -38,13 +38,23 @@ export default function Login() {
         console.log('u :>> ', u);
         fetch(`https://graph.facebook.com/${result.user.providerData[0].uid}/picture?type=large`)
           .then((response) => response.blob())
-          .then((blob) => setImg(URL.createObjectURL(blob)))
-          .then(console.log('Img :>> ', Img))
+          .then((blob) => {
+            const file = new File([blob], 'image', { type: blob.type })
+            readFile(file)
+          })
       }).catch((error) => {
         const errorMessage = error.message;
         console.log('errorMessage :>> ', errorMessage);
       })
 
+  }
+  const readFile = (file) => {
+    const fr = new FileReader();
+    fr.readAsDataURL(file);
+    fr.addEventListener('load', () => {
+      const res = fr.result;
+      console.log('res :>> ', res);
+    })
   }
   //when current user is defined by register form or social network
   useEffect(() => {
