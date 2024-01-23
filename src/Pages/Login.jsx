@@ -32,30 +32,18 @@ export default function Login() {
         const credential = FacebookAuthProvider.credentialFromResult(result);
         const accessToken = credential.accessToken
         console.log('result :>> ', result);
+        console.log('result.user.providerData[0].photoURL :>> ', result.user.providerData[0].photoURL);
         console.log('credential :>> ', credential);
         console.log('accessToken :>> ', accessToken);
         const u = getAdditionalUserInfo(result);
         console.log('u :>> ', u);
-        fetch(`https://graph.facebook.com/${result.user.providerData[0].uid}/picture?type=large&access_token=${accessToken}`)
-          .then((response) => response.blob())
-          .then((blob) => {
-            const file = new File([blob], 'image', { type: blob.type })
-            readFile(file)
-          })
       }).catch((error) => {
         const errorMessage = error.message;
         console.log('errorMessage :>> ', errorMessage);
       })
 
   }
-  const readFile = (file) => {
-    const fr = new FileReader();
-    fr.readAsDataURL(file);
-    fr.addEventListener('load', () => {
-      const res = fr.result;
-      console.log('res :>> ', res);
-    })
-  }
+
   //when current user is defined by register form or social network
   useEffect(() => {
     if (currentUser) {
