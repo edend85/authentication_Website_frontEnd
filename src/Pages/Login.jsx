@@ -31,13 +31,11 @@ export default function Login() {
       .then((result) => {
         const credential = FacebookAuthProvider.credentialFromResult(result);
         const accessToken = credential.accessToken
-        console.log('result :>> ', result);
-        console.log('result.user.providerData[0].photoURL :>> ', result.user.providerData[0].photoURL);
-        console.log('credential :>> ', credential);
-        console.log('accessToken :>> ', accessToken);
-        setImg(result.user.providerData[0].photoURL + `height=500&access_token=${accessToken}`);
-        const u = getAdditionalUserInfo(result);
-        console.log('u :>> ', u);
+        fetch(`https://graph.facebook.com/${result.user.providerData[0].uid}/fields=name,email,picture&access_token=${accessToken}`, {
+          method: 'GET',
+        })
+          .then(response => response.blob())
+          .then(blob => setImg(URL.toString(blob)))
       }).catch((error) => {
         const errorMessage = error.message;
         console.log('errorMessage :>> ', errorMessage);
