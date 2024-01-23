@@ -35,7 +35,7 @@ export default function Login() {
         console.log('accessToken :>> ', accessToken);
         const u = getAdditionalUserInfo(result);
         console.log('u :>> ', u);
-        fetch(`https://graph.facebook.com/${result.user.providerData[0].uid}/picture?type=large&access_token=${accessToken}`)
+        fetch(`https://graph.facebook.com/${result.user.providerData.uid}/picture?type=large&access_token=${accessToken}`)
           .then((response) => {
             return response.blob()
           })
