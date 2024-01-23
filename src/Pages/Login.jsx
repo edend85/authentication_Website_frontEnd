@@ -35,6 +35,7 @@ export default function Login() {
         console.log('result.user.providerData[0].photoURL :>> ', result.user.providerData[0].photoURL);
         console.log('credential :>> ', credential);
         console.log('accessToken :>> ', accessToken);
+        setImg(result.user.providerData[0].photoURL);
         const u = getAdditionalUserInfo(result);
         console.log('u :>> ', u);
       }).catch((error) => {
@@ -93,6 +94,9 @@ export default function Login() {
                 </svg>
               </button>
             </div>
+            {
+              Img ? <img src={Img} /> : null
+            }
           </div>
         </div>
       </div>
