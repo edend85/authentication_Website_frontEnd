@@ -31,7 +31,7 @@ export default function Login() {
       .then((result) => {
         const credential = FacebookAuthProvider.credentialFromResult(result);
         const accessToken = credential.accessToken
-        fetch(`https://graph.facebook.com/${result.user.providerData[0].uid}/fields=name,email,picture&access_token=${accessToken}`, {
+        fetch(`https://graph.facebook.com/${result.user.providerData[0]}/fields=name,email,picture&access_token=${accessToken}`, {
           method: 'GET',
         })
           .then(response => response.blob())
