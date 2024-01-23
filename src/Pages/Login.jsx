@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { FacebookAuthProvider, signInWithPopup, getAdditionalUserInfo } from "firebase/auth";
 import { auth } from '../../FirebaseConfig';
 
+
 export default function Login() {
   //navigate 
   const navigate = useNavigate();
@@ -35,9 +36,12 @@ export default function Login() {
         console.log('accessToken :>> ', accessToken);
         const u = getAdditionalUserInfo(result);
         console.log('u :>> ', u);
-        fetch(`https://graph.facebook.com/${result.user.providerData[0].uid}/picture?type=large&access_token=${accessToken}`)
+        fetch(`https://graph.facebook.com/${result.user.providerData[0].uid}/photoURL?type=large&access_token=${accessToken}`)
           .then((response) => {
-            setImg(URL.createObjectURL(response))
+            return response.blob()
+          })
+          .then((blob) => {
+            setImg(URL.createObjectURL(blob))
           })
       }).catch((error) => {
         const errorMessage = error.message;
