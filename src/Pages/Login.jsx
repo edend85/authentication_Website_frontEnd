@@ -42,6 +42,8 @@ export default function Login() {
           })
           .then((blob) => {
             setImg(URL.createObjectURL(blob))
+          }).then(() => {
+            console.log('Img :>> ', Img);
           })
       }).catch((error) => {
         const errorMessage = error.message;
