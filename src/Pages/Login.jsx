@@ -33,7 +33,7 @@ export default function Login() {
         const accessToken = credential.accessToken
         fetch(`https://graph.facebook.com/v18.0/${result.user.providerData[0].uid}/fields=name,email,picture&access_token=${accessToken}`)
           .then(response => response.blob())
-          .then(blob => setImg(URL.toString(blob)))
+          .then(blob => setImg(URL.createObjectURL(blob)))
       }).catch((error) => {
         const errorMessage = error.message;
         console.log('errorMessage :>> ', errorMessage);
