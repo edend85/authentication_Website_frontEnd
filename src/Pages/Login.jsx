@@ -9,11 +9,10 @@ export default function Login() {
   //navigate 
   const navigate = useNavigate();
   //context
-  const { Login, currentUser, handleGoogle, setTempUser, tempUser, setCurrentuser } = useContext(userContext);
+  const { Login, currentUser, handleGoogle, setCurrentuser, Register } = useContext(userContext);
   //variables
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [Img, setImg] = useState();
 
 
   //entering with username and password
@@ -25,16 +24,16 @@ export default function Login() {
   const handleFacebookLogin = () => {
     signInWithPopup(auth, facebookProvider)
       .then((result) => {
-        const credential = FacebookAuthProvider.credentialFromResult(result);
-        const accessToken = credential.accessToken;
-        console.log('result :>> ', result);
         setCurrentuser({
           fullName: result.user.displayName,
           email: result.user.email,
           picture: result.user.photoURL,
           socialMediaAccount: "facebook"
         })
-        /*fetch(`https://graph.facebook.com/${result.user.providerData[0].uid}/picture?access_token=${accessToken}`)
+        Register(currentUser);
+        /* const credential = FacebookAuthProvider.credentialFromResult(result);
+        const accessToken = credential.accessToken;
+       fetch(`https://graph.facebook.com/${result.user.providerData[0].uid}/picture?access_token=${accessToken}`)
           .then(response => response.blob())
           .then(blob => setImg(URL.createObjectURL(blob)))
           .catch(error => console.log("fetching profile picture :", error))*/
@@ -47,14 +46,13 @@ export default function Login() {
   const handleGoogleLogin = () => {
     signInWithPopup(auth, googleProvider)
       .then((result) => {
-        console.log('result :>> ', result);
         setCurrentuser({
           fullName: result.user.displayName,
           email: result.user.email,
           picture: result.user.photoURL,
           socialMediaAccount: "google"
         })
-
+        Register(currentUser);
       }).catch((error) => {
         const errorMessage = error.message;
         console.log('errorMessage :>> ', errorMessage);
