@@ -24,13 +24,14 @@ export default function Login() {
   const handleFacebookLogin = () => {
     signInWithPopup(auth, facebookProvider)
       .then((result) => {
-        setCurrentuser({
+        let user = {
           fullName: result.user.displayName,
           email: result.user.email,
           picture: result.user.photoURL,
           socialMediaAccount: "facebook"
-        })
-        Register(currentUser);
+        }
+        Register(user);
+        setCurrentuser(user)
         /* const credential = FacebookAuthProvider.credentialFromResult(result);
         const accessToken = credential.accessToken;
        fetch(`https://graph.facebook.com/${result.user.providerData[0].uid}/picture?access_token=${accessToken}`)
@@ -46,13 +47,14 @@ export default function Login() {
   const handleGoogleLogin = () => {
     signInWithPopup(auth, googleProvider)
       .then((result) => {
-        setCurrentuser({
+        let user = {
           fullName: result.user.displayName,
           email: result.user.email,
           picture: result.user.photoURL,
           socialMediaAccount: "google"
-        })
-        Register(currentUser);
+        }
+        Register(user);
+        setCurrentuser(user);
       }).catch((error) => {
         const errorMessage = error.message;
         console.log('errorMessage :>> ', errorMessage);
