@@ -34,10 +34,10 @@ export default function Login() {
           picture: result.user.photoURL,
           socialMediaAccount: "facebook"
         })
-        fetch(`https://graph.facebook.com/${result.user.providerData[0].uid}/picture?access_token=${accessToken}`)
+        /*fetch(`https://graph.facebook.com/${result.user.providerData[0].uid}/picture?access_token=${accessToken}`)
           .then(response => response.blob())
           .then(blob => setImg(URL.createObjectURL(blob)))
-          .catch(error => console.log("fetching profile picture :", error))
+          .catch(error => console.log("fetching profile picture :", error))*/
       }).catch((error) => {
         const errorMessage = error.message;
         console.log('errorMessage :>> ', errorMessage);
