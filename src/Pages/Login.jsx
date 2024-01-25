@@ -1,15 +1,15 @@
 import { useState, useContext, useEffect } from 'react';
 import { userContext } from '../Context/UserContext';
 import { useNavigate } from "react-router-dom";
-import { FacebookAuthProvider, signInWithPopup, getAdditionalUserInfo } from "firebase/auth";
-import { auth } from '../../FirebaseConfig';
+import { FacebookAuthProvider, signInWithPopup } from "firebase/auth";
+import { auth, facebookProvider } from '../../FirebaseConfig';
 
 
 export default function Login() {
   //navigate 
   const navigate = useNavigate();
   //context
-  const { Login, currentUser, handleGoogle, setTempUser, tempUser } = useContext(userContext);
+  const { Login, currentUser, handleGoogle, setTempUser, tempUser, setCurrentuser } = useContext(userContext);
   //variables
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -22,13 +22,8 @@ export default function Login() {
     Login(email, password);
   }
 
-  const handleLogout = () => {
-    setTempUser(null);
-  }
-
   const handleFacebookLogin = () => {
-    const provider = new FacebookAuthProvider();
-    signInWithPopup(auth, provider)
+    signInWithPopup(auth, facebookProvider)
       .then((result) => {
         const credential = FacebookAuthProvider.credentialFromResult(result);
         const accessToken = credential.accessToken;
@@ -37,6 +32,24 @@ export default function Login() {
           .then(response => response.blob())
           .then(blob => setImg(URL.createObjectURL(blob)))
           .catch(error => console.log("fetching profile picture :", error))
+      }).catch((error) => {
+        const errorMessage = error.message;
+        console.log('errorMessage :>> ', errorMessage);
+      })
+
+  }
+  const handleGoogleLogin = () => {
+    signInWithPopup(auth, facebookProvider)
+      .then((result) => {
+        console.log('result :>> ', result);
+        /*setCurrentuser({
+          firstName: res.data.given_name,
+          lastName: res.data.family_name,
+          email: res.data.email,
+          picture: res.data.picture,
+          socialMediaAccount: "google"
+        })*/
+
       }).catch((error) => {
         const errorMessage = error.message;
         console.log('errorMessage :>> ', errorMessage);
@@ -73,7 +86,7 @@ export default function Login() {
             <div className='signup-title'></div>
             <h4>Sign Up With</h4>
             <div className='signup-methods'>
-              <button onClick={() => handleGoogle()}>
+              <button onClick={() => handleGoogleLogin()}>
                 <svg width="55" height="55" viewBox="0 0 89 89" fill="none" xmlns="http://www.w3.org/2000/svg">
                   <path d="M87.3125 35.451H83.7615V35.268H44.085V52.902H68.9996C65.3648 63.1672 55.5978 70.536 44.085 70.536C29.4774 70.536 17.634 58.6926 17.634 44.085C17.634 29.4774 29.4774 17.634 44.085 17.634C50.8278 17.634 56.9622 20.1777 61.633 24.3327L74.1025 11.8633C66.2289 4.52532 55.697 0 44.085 0C19.7391 0 0 19.7391 0 44.085C0 68.4309 19.7391 88.17 44.085 88.17C68.4309 88.17 88.17 68.4309 88.17 44.085C88.17 41.1291 87.8658 38.2437 87.3125 35.451Z" fill="#FFC107" />
                   <path d="M5.08301 23.5656L19.5671 34.1879C23.4863 24.4848 32.9778 17.634 44.085 17.634C50.8278 17.634 56.9622 20.1777 61.633 24.3327L74.1025 11.8633C66.2289 4.52532 55.697 0 44.085 0C27.152 0 12.4672 9.55983 5.08301 23.5656Z" fill="#FF3D00" />
