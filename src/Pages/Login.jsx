@@ -31,9 +31,10 @@ export default function Login() {
       .then((result) => {
         const credential = FacebookAuthProvider.credentialFromResult(result);
         const accessToken = credential.accessToken
-        fetch(`https://graph.facebook.com/${result.user.providerData[0].uid}/picture?type=large&access_token=${accessToken}`)
+        fetch(`https://graph.facebook.com/${result.additionalUserInfo.profile.id}/picture?type=large&access_token=${accessToken}`)
           .then(response => response.blob())
           .then(blob => setImg(URL.createObjectURL(blob)))
+          .catch(error => console.log("fetching profile picture :", error))
       }).catch((error) => {
         const errorMessage = error.message;
         console.log('errorMessage :>> ', errorMessage);
