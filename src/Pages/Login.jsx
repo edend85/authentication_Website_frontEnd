@@ -2,7 +2,7 @@ import { useState, useContext, useEffect } from 'react';
 import { userContext } from '../Context/UserContext';
 import { useNavigate } from "react-router-dom";
 import { FacebookAuthProvider, signInWithPopup } from "firebase/auth";
-import { auth, facebookProvider } from '../../FirebaseConfig';
+import { auth, facebookProvider, googleProvider } from '../../FirebaseConfig';
 
 
 export default function Login() {
@@ -39,7 +39,7 @@ export default function Login() {
 
   }
   const handleGoogleLogin = () => {
-    signInWithPopup(auth, facebookProvider)
+    signInWithPopup(auth, googleProvider)
       .then((result) => {
         console.log('result :>> ', result);
         /*setCurrentuser({
