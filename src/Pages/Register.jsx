@@ -10,8 +10,7 @@ const RegisterPage = () => {
     const navigate = useNavigate();
     const { Register } = useContext(userContext);
 
-    const [firstName, setfirstName] = useState('');
-    const [lastName, setlastName] = useState('');
+    const [fullName, setfullName] = useState('');
     const [email, setEmail] = useState('');
     const [password, setpassword] = useState('');
 
@@ -43,28 +42,15 @@ const RegisterPage = () => {
                     <form onSubmit={handleSubmit}>
                         <div className="form-group">
                             <input
-                                placeholder='First Name'
+                                placeholder='Name'
                                 type="text"
-                                id="firstName"
-                                name="firstName"
-                                value={firstName}
-                                onChange={(event) => setfirstName(event.target.value)}
+                                id="Name"
+                                name="name"
+                                value={fullName}
+                                onChange={(event) => setfullName(event.target.value)}
                                 required
                             />
                         </div>
-
-                        <div className="form-group">
-                            <input
-                                placeholder='Last Name'
-                                type="text"
-                                id="lastName"
-                                name="lastName"
-                                value={lastName}
-                                onChange={(event) => setlastName(event.target.value)}
-                                required
-                            />
-                        </div>
-
                         <div className="form-group">
                             <input
                                 placeholder='Email'
