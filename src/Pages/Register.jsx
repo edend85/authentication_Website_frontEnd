@@ -17,8 +17,7 @@ const RegisterPage = () => {
     const handleSubmit = (e) => {
         e.preventDefault();
         let user = {
-            firstName: firstName,
-            lastName: lastName,
+            fullName: fullName,
             email: email,
             password: password,
             socialMediaAccount: "regForm"

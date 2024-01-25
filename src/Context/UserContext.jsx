@@ -20,8 +20,7 @@ export default function UserContext({ children }) {
                     "Content-Type": "application/json"
                 },
                 body: JSON.stringify({
-                    firstName: user.firstName,
-                    lastName: user.lastName,
+                    fullName: user.fullName,
                     email: user.email,
                     password: user.password || "",
                     picture: user.picture || "",
@@ -62,7 +61,7 @@ export default function UserContext({ children }) {
     });
 
 
-    useEffect(
+    /*useEffect(
         () => {
             if (tempUser) {
                 axios
@@ -87,7 +86,7 @@ export default function UserContext({ children }) {
             }
         },
         [tempUser]
-    );
+    );*/
 
     let allValues = {
         Register,
