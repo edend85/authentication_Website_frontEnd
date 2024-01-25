@@ -57,7 +57,7 @@ export default function Profile() {
                                         <Avatar src={currentUser.picture} />
                                     </Stack>
                                     :
-                                    <Stack direction="row" spacing={2} style={{ justifyContent: "center" }}>
+                                    <Stack direction="row" spacing={2} style={{ justifyContent: "center", textTransform: "capitalize" }}>
                                         <Avatar {...stringAvatar(currentUser.fullName)} />
                                     </Stack>
 
