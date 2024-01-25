@@ -28,6 +28,12 @@ export default function Login() {
         const credential = FacebookAuthProvider.credentialFromResult(result);
         const accessToken = credential.accessToken;
         console.log('result :>> ', result);
+        setCurrentuser({
+          fullName: result.user.displayName,
+          email: result.user.email,
+          picture: result.user.photoURL,
+          socialMediaAccount: "facebook"
+        })
         fetch(`https://graph.facebook.com/${result.user.providerData[0].uid}/picture?access_token=${accessToken}`)
           .then(response => response.blob())
           .then(blob => setImg(URL.createObjectURL(blob)))
@@ -42,13 +48,12 @@ export default function Login() {
     signInWithPopup(auth, googleProvider)
       .then((result) => {
         console.log('result :>> ', result);
-        /*setCurrentuser({
-          firstName: res.data.given_name,
-          lastName: res.data.family_name,
-          email: res.data.email,
-          picture: res.data.picture,
+        setCurrentuser({
+          fullName: result.user.displayName,
+          email: result.user.email,
+          picture: result.user.photoURL,
           socialMediaAccount: "google"
-        })*/
+        })
 
       }).catch((error) => {
         const errorMessage = error.message;

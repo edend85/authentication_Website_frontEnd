@@ -43,7 +43,6 @@ export default function Profile() {
             children: `${name.split(' ')[0][0]}${name.split(' ')[1][0]}`,
         };
     }
-    const fullName = currentUser.firstName + " " + currentUser.lastName;
 
     return (
         <>
@@ -53,18 +52,17 @@ export default function Profile() {
                     currentUser ? (
                         <div className="profile-info">
                             {
-                                currentUser.socialMediaAccount == "google" ?
+                                currentUser.socialMediaAccount == "google" || currentUser.socialMediaAccount == "facebook" ?
                                     <Stack direction="row" spacing={2} style={{ justifyContent: "center" }}>
                                         <Avatar src={currentUser.picture} />
                                     </Stack>
                                     :
                                     <Stack direction="row" spacing={2} style={{ justifyContent: "center" }}>
-                                        <Avatar {...stringAvatar(fullName)} />
+                                        <Avatar {...stringAvatar(currentUser.fullName)} />
                                     </Stack>
 
                             }
-                            <p>First Name: {currentUser.firstName}</p>
-                            <p>Last Name: {currentUser.lastName}</p>
+                            <p>Name: {currentUser.fullName}</p>
                             <p>Email: {currentUser.email}</p>
                             <button onClick={logOut}>Log out</button>
                         </div>
