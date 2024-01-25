@@ -15,6 +15,7 @@ export default function Login() {
   const [password, setPassword] = useState("");
   const [Img, setImg] = useState();
 
+
   //entering with username and password
   const handleSubmit = () => {
     console.log('email,password :>> ', email, password);
@@ -30,7 +31,7 @@ export default function Login() {
     signInWithPopup(auth, provider)
       .then((result) => {
         const credential = FacebookAuthProvider.credentialFromResult(result);
-        const accessToken = credential.accessToken
+        const accessToken = credential.accessToken;
         console.log('result :>> ', result);
         fetch(`https://graph.facebook.com/${result.user.providerData[0].uid}/picture?access_token=${accessToken}`)
           .then(response => response.blob())
@@ -93,7 +94,11 @@ export default function Login() {
               </button>
             </div>
             {
-              Img ? <img src={Img} /> : null
+              Img ? <>
+                <div className='photo'>
+                  <img src={Img} alt="dp" referrerPolicy='no-referrer' />
+                </div>
+              </> : null
             }
           </div>
         </div>
