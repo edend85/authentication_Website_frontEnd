@@ -3,6 +3,7 @@ import { userContext } from '../Context/UserContext';
 import { useNavigate } from "react-router-dom";
 import { FacebookAuthProvider, signInWithPopup, getAdditionalUserInfo } from "firebase/auth";
 import { auth } from '../../FirebaseConfig';
+import { ModuleGraph } from 'vite';
 
 
 export default function Login() {
@@ -32,10 +33,11 @@ export default function Login() {
         const credential = FacebookAuthProvider.credentialFromResult(result);
         const accessToken = credential.accessToken
         console.log('result :>> ', result);
-        fetch(`https://graph.facebook.com/${result.user.providerData[0].uid}/picture?type=large&access_token=${accessToken}`)
+        setImg("https://graph.facebook.com/${result.user.providerData[0].uid}/picture")
+        /*fetch(`https://graph.facebook.com/${result.user.providerData[0].uid}/picture?type=large&access_token=${accessToken}`)
           .then(response => response.blob())
           .then(blob => setImg(URL.createObjectURL(blob)))
-          .catch(error => console.log("fetching profile picture :", error))
+          .catch(error => console.log("fetching profile picture :", error))*/
       }).catch((error) => {
         const errorMessage = error.message;
         console.log('errorMessage :>> ', errorMessage);
