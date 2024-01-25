@@ -111,13 +111,6 @@ export default function Login() {
                 </svg>
               </button>
             </div>
-            {
-              Img ? <>
-                <div className='photo'>
-                  <img src={Img} alt="dp" referrerPolicy='no-referrer' />
-                </div>
-              </> : null
-            }
           </div>
         </div>
       </div>
