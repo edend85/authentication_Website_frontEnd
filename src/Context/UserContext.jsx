@@ -9,6 +9,7 @@ export default function UserContext({ children }) {
 
     const [currentUser, setCurrentuser] = useState("");
     const [tempUser, setTempUser] = useState("");
+    const [massage, setMassage] = useState("");
 
     const Register = async (user) => {
         console.log('user :>> ', user);

@@ -29,6 +29,11 @@ const RegisterPage = () => {
     const backToLoginPage = () => {
         navigate("/")
     }
+    const massageAlert = () => {
+        return (
+            
+        )
+    }
 
     return (
         <>
