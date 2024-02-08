@@ -31,7 +31,9 @@ const RegisterPage = () => {
     }
     const massageAlert = () => {
         return (
-            
+            <><div>
+                <p>hiiiii</p>
+            </div></>
         )
     }
 
