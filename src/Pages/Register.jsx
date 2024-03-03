@@ -24,17 +24,18 @@ const RegisterPage = () => {
         }
         console.log('Form submitted:', user);
         Register(user);
-
+        let currentDate = new Date();
+        console.log('currentDate :>> ', currentDate);
     }
     const backToLoginPage = () => {
         navigate("/")
     }
     const massageAlert = () => {
-        return (
-            <><div>
-                <p>hiiiii</p>
-            </div></>
-        )
+        /* return (
+             <div>
+                 <p>You Are Registerd ! :)</p>
+             </div>
+         )*/
     }
 
     return (
