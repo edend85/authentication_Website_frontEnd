@@ -24,7 +24,7 @@ const RegisterPage = () => {
         }
         console.log('Form submitted:', user);
         Register(user);
-        let currentDate = new Date().getMonth();
+        let currentDate = new Date().getMonth;
         console.log('currentDate :>> ', currentDate);
     }
     const backToLoginPage = () => {
