@@ -4,7 +4,7 @@ h1{
   text-align: center;
 }
 .profile-container {
-    max-width: 600px;
+    width: 50%;
     margin: 50px auto;
     padding: 20px;
     border: 1px solid #ccc;
@@ -27,4 +27,14 @@ h1{
     overflow: hidden;
     margin: 0 auto;
 }
-  
+@media screen and (max-width: 500px) and (min-width: 360px){
+  .profile-container{
+    width: 95%;
+  }
+}
+@media screen and(min-width: 500px)and (max-width: 1024px)
+{
+  .profile-container{
+    width: 95%;
+  }
+}
