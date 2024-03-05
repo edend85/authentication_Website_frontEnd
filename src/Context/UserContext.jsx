@@ -55,6 +55,27 @@ export default function UserContext({ children }) {
             alert('not match :>> ');
         }
     }
+    const Check = async (email) => {
+        try {
+            const url = `${base_url}/api/user/Check`
+            const response = await fetch(url, {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({
+                    email: email
+                })
+            })
+            if (response.ok) {
+                const email = await response.json();
+                return email;
+            }
+
+        } catch (error) {
+            alert('not match :>> ');
+        }
+    }
     //entring with google account 
     const handleGoogle = useGoogleLogin({
         onSuccess: (codeResponse) => setTempUser(codeResponse),
@@ -91,6 +112,7 @@ export default function UserContext({ children }) {
 
     let allValues = {
         Register,
+        Check,
         Login,
         setCurrentuser,
         setTempUser,

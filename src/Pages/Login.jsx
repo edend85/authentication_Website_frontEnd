@@ -9,7 +9,7 @@ export default function Login() {
   //navigate 
   const navigate = useNavigate();
   //context
-  const { Login, currentUser, handleGoogle, setCurrentuser, Register } = useContext(userContext);
+  const { Login, currentUser, Check, setCurrentuser, Register } = useContext(userContext);
   //variables
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -30,14 +30,9 @@ export default function Login() {
           picture: result.user.photoURL,
           socialMediaAccount: "facebook"
         }
+        Check(user.email);
         Register(user);
         setCurrentuser(user)
-        /* const credential = FacebookAuthProvider.credentialFromResult(result);
-        const accessToken = credential.accessToken;
-       fetch(`https://graph.facebook.com/${result.user.providerData[0].uid}/picture?access_token=${accessToken}`)
-          .then(response => response.blob())
-          .then(blob => setImg(URL.createObjectURL(blob)))
-          .catch(error => console.log("fetching profile picture :", error))*/
       }).catch((error) => {
         const errorMessage = error.message;
         console.log('errorMessage :>> ', errorMessage);
