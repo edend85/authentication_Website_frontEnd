@@ -27,11 +27,7 @@ export default function Login() {
         let user = {
           fullName: result.user.displayName,
           email: result.user.email,
-          picture: result.user.photoURL,
-          socialMediaAccount: "facebook"
-        }
-        if (!Check(user.email)) {
-          Register(user);
+          picture: result.user.photoURL
         }
         setCurrentuser(user)
       }).catch((error) => {
@@ -46,18 +42,14 @@ export default function Login() {
         let user = {
           fullName: result.user.displayName,
           email: result.user.email,
-          picture: result.user.photoURL,
-          socialMediaAccount: "google"
+          picture: result.user.photoURL
         }
-        if (!Check(user.email)) {
-          Register(user);
-        }
+        console.log('user :>> ', user);
         setCurrentuser(user)
       }).catch((error) => {
         const errorMessage = error.message;
         console.log('errorMessage :>> ', errorMessage);
       })
-
   }
 
   //when current user is defined by register form or social network
