@@ -8,7 +8,7 @@ import { useNavigate } from 'react-router-dom';
 
 const RegisterPage = () => {
     const navigate = useNavigate();
-    const { Register } = useContext(userContext);
+    const { Register, Check } = useContext(userContext);
 
     const [fullName, setfullName] = useState('');
     const [email, setEmail] = useState('');
@@ -23,9 +23,12 @@ const RegisterPage = () => {
             socialMediaAccount: "regForm"
         }
         console.log('Form submitted:', user);
-        Register(user);
-        let currentDate = new Date().getMonth;
-        console.log('currentDate :>> ', currentDate);
+        if (!Check(user.email)) {
+            Register(user);
+        }
+        else {
+            alert("user is Already Exsist !")
+        }
     }
     const backToLoginPage = () => {
         navigate("/")

@@ -49,8 +49,10 @@ export default function Login() {
           picture: result.user.photoURL,
           socialMediaAccount: "google"
         }
-        Register(user);
-        setCurrentuser(user);
+        if (!Check(user.email)) {
+          Register(user);
+        }
+        setCurrentuser(user)
       }).catch((error) => {
         const errorMessage = error.message;
         console.log('errorMessage :>> ', errorMessage);
