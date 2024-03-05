@@ -67,11 +67,7 @@ export default function UserContext({ children }) {
                     email: email
                 })
             })
-            if (response.ok) {
-                const email = await response.json();
-                return email;
-            }
-
+            return response;
         } catch (error) {
             alert('not match :>> ');
         }
